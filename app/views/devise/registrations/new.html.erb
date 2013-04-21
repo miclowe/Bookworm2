@@ -1,0 +1,18 @@
+<% title "Sign Up" %>
+  <div id="sign_up_form">
+    <h2>Sign up</h2>
+
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <div id="short_field">
+        <div class="f_left"><%= f.text_field :first_name, :autofocus => true, :placeholder => "First Name" %></div>
+        <div class="f_right"><%= f.text_field :last_name, :placeholder => "Last Name" %></div>
+      </div>
+      <div><%= f.text_field :email, :placeholder => "Your email" %></div>
+      <div><%= f.password_field :password, :placeholder => "Password (min 6 characters)" %></div>
+      <div><%= f.password_field :password_confirmation, :placeholder => "Re-enter password" %></div>
+
+      <div><%= f.submit "Sign up", :class => "btn" %></div>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>

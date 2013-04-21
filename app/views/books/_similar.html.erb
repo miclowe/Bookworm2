@@ -1,0 +1,12 @@
+<h3>Other books you may like:</h3>
+
+<% @booksimilar.each do |item| %>
+    <% item[:title].count.times do |x| %>
+      <p>
+        <img src='<%= item[:image_url][x] %>'>
+        <a href="/detail/<%= item[:work_id][x] %>"><%= item[:title][x] %></a> by 
+        <%= item[:author][x] %>
+        <%= item[:work_id][x] %>
+      </p>
+    <% end %>
+  <% end %>

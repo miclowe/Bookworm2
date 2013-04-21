@@ -1,0 +1,25 @@
+<% title "Book Details" %>
+<%= notice %>
+<h1>Book Details</h1>
+<%#= params.inspect %>
+<% @bookdetail.each do |item| %>
+  <img src="<%= item[:image_url] %>">
+  <p>Title: <%= item[:title] %>
+  <p>Author: <%= item[:author] %>
+  <p>Description: <%= item[:description] %>
+  <p>ISBN: <%= item[:isbn] %>
+  <p>WorkID: <%= item[:work_id] %>
+    
+  <%= form_tag(detail_path(@id), method: "post") do %>
+    <%= hidden_field_tag(:cover_url, item[:image_url]) %>
+    <%= hidden_field_tag(:title, item[:title]) %>
+    <%= hidden_field_tag(:author, item[:author]) %>
+    <%= hidden_field_tag(:description, item[:description]) %>
+    <%= hidden_field_tag(:isbn, item[:isbn]) %>
+    <%= hidden_field_tag(:work_id, item[:work_id]) %>
+    <%= hidden_field_tag(:gr_id, params[:id]) %>
+    <%= submit_tag("Add to Bookbag") %>
+  <% end %>
+<% end %>
+
+<%= render "similar" %>
