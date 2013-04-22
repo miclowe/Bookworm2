@@ -4,6 +4,8 @@
 }
 
 body {
+  background-color: #F2EDE0;
+  color: #4A453F;
   font-family: 'Open Sans', sans-serif;
   padding-bottom: 20px;
   padding-top: 60px;
@@ -52,7 +54,7 @@ input[type="password"] {
   font-size: 25px;
 }
 
-form {
+.home form {
   background-img: url('bookworm.jpg');
   background-repeat: no-repeat;
 }
