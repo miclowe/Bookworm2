@@ -1,43 +1,24 @@
 <% title "Search Results" %>
-
-<h3>You searched for <%= @query %></h3>
-
-<p><%#= @books.inspect %></p>
-
-<table>
-  <tr>
-    <th>Small Image</th>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Pub Date</th>
-    <th>Pub Day</th>
-    <th>Pub Year</th>
-    <th>Book Id</th>
-    <th>Word Id</th>
-  </tr>
-  <% @books.each do |item| %>
-  <tr>
-    <td><img src='<%= item[:sm_image_url] %>'></td>
-    <td><a href="/detail/<%= item[:gr_id]%>"><%= item[:title]%></a></td>
-    <td><%= item[:author]%></td>
-    <td><%= item[:pub_month]%>/<%= item[:pub_day]%>/<%= item[:pub_year]%></td>
-    <td><%= item[:pub_day]%></td>
-    <td><%= item[:pub_year]%></td>
-    <td><%= item[:gr_id]%></td>
-    <td><%= item[:work_id]%></td>
-  </tr> 
-  <% end %>
-</table>
-
-<!-- 
-***********************************************************
-<%# @books.each do |item| %>
-  <%# item[:title].count.times do |x| %>
-   <p>
-    <strong><a href="/details/<%#= item[:link][x] %>"><%#= item[:title][x] %></a></strong>
-    <strong><a href="http://www.goodreads.com/<%#= item[:link][x] %>"><%#= item[:title][x] %></a></strong>
-    <em> By: <%#= item[:author][x] %></em>
-  <%# end %>
-<%# end %>
-***********************************************************
--->
+<%#= @books.inspect %>
+<div class="row results">
+  <h4 class="center">You searched for '<%= @query %>'</h4>
+    <div class="span9">
+      <div class="container list">
+        <% @books.each do |item| %>
+        <div class="row">
+          <div class="span2 right img_box">
+            <% if item[:sm_image_url] == "http://www.goodreads.com/assets/nocover/60x80.png" %>
+              <%= image_tag 'no_cover_img.jpg' %>
+            <% else %>
+              <%= image_tag item[:sm_image_url] %>
+            <% end %>
+          </div>
+          <div class="span6 text_box">
+            <a href="/detail/<%= item[:gr_id]%>"><%= item[:title]%> (<%= item[:pub_year]%>)</a><br />
+            by: <%= item[:author]%>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

@@ -1,13 +1,10 @@
 <% title "Home" %>
-
-  <div class="row home">
-    <div class="span12">
-      <div class="center home_container">
-          <%= image_tag "bookworm_brown.png", :class => "center" %>
-          <%= form_tag("/search", method: "get") do %>
-            <%= text_field_tag :query, "", :placeholder => "Search by title, author or ISBN", autofocus: true %><br />
-            <%= submit_tag "Search",:name => nil, :class => "btn" %>
-          <% end %>
-        </div>
-      </div>
+<div class="container home center">
+  <h3>Looking for a good book?</h3>
+  <%= form_tag("/search", method: "get") do %>
+    <%= text_field_tag :query, "", :placeholder => "Search by title, author or ISBN", autofocus: true %><br />
+    <%= submit_tag "Search",:name => nil, :class => "search btn btn-small" %>
+  <% end %>
+  <div class="bgimg">
     </div>
+  </div>

@@ -1,3 +1,59 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.list {
+  padding: 40px;
+}
+
+.img_box {
+  padding: 15px;
+}
+
+.text_box {
+  padding: 20px;
+}
+
+.details {
+  border-bottom: 1px solid #CCC;
+  margin: 10px;
+  padding-bottom: 10px;
+}
+
+.details .img_box {
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.details .img_box img {
+  max-height: 250px;
+}
+
+.details .text_box {
+  font-size: 12px;
+}
+
+.similar {
+  padding-left: 30px;
+}
+
+.similar img {
+  height: 150px;
+}
+
+.similar .text_box {
+  font-size: 12px;
+  margin-left: 30px;
+  padding: 10px;
+}
+
+.similar_book_box {
+  display: inline-block;
+  height: 300px;
+  vertical-align: top;
+  width: 170px;
+}
+
+.similar_book_box ul {
+  list-style-type: none;
+}

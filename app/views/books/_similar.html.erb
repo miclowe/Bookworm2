@@ -1,12 +1,29 @@
-<h3>Other books you may like:</h3>
+<h3 class="center">Other books you may like:</h3>
 
-<% @booksimilar.each do |item| %>
+<ul>
+
+  <% @booksimilar.each do |item| %>
+    
+  
+
     <% item[:title].count.times do |x| %>
-      <p>
-        <img src='<%= item[:image_url][x] %>'>
-        <a href="/detail/<%= item[:work_id][x] %>"><%= item[:title][x] %></a> by 
-        <%= item[:author][x] %>
-        <%= item[:work_id][x] %>
-      </p>
+    <li class="similar_book_box">
+
+      <div class="img_box center">
+        <% if item[:cover_url][x] == "http://www.goodreads.com/assets/nocover/60x80.png" %>
+          <%= image_tag 'no_cover_img.jpg' %>
+        <% else %>
+          <%= image_tag item[:cover_url][x] %>
+        <% end %>
+      </div>
+      <div class="text_box">
+      <a href="/detail/<%= item[:work_id][x] %>"><%= item[:title][x] %></a><br />by <%= item[:author  ][x] %>
+      </div>
+
+
+  </li>
     <% end %>
+
   <% end %>
+
+</ul>

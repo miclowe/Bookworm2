@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 20px;
+  padding-top: 60px;
+}
+
+.home {
+  margin-bottom: 40px;
+}
+
+.home h3 {
+  margin-top: 50px;
+}
+
+.bgimg {
+  background: transparent url('bookworm.png') center no-repeat;
+  background-size: 30%;
+  filter:alpha(opacity=20);
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
+  opacity: 0.7;
+  padding-top: 300px;
+}
+
+.logo img {
+  filter:alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+  margin-top: 5px;
+  margin-left: -40px;
+  padding-bottom: 5px;
+  position: absolute;
+}
+
+.search btn {
+  margin-bottom: 100px;
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 25px;
+  font-size: 16px;
+}
+
+.brand.logo {
+  font-size: 25px;
+}
+
+form {
+  background-img: url('bookworm.jpg');
+  background-repeat: no-repeat;
+}
+
+.home img {
+  padding: 20px;
+}
+
+.home input[type="text"] {
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+#sign_up_form {
+  margin: auto;
+  width: 400px;
+}
+
+#sign_up_form #short_field input[type="text"] {
+  width: 180px;
+}
+
+#sign_up_form input[type="text"],
+#sign_up_form input[type="password"] {
+  width: 385px;
+}
