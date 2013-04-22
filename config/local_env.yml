@@ -1,5 +1,0 @@
-# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
-GMAIL_USERNAME: 'mklowe2012'
-GMAIL_PASSWORD: 'junk71mail'
-
-GOODREADS_KEY: 'C9dGgAg4RNcn9xNhUVaMA'

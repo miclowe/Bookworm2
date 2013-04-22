@@ -9,9 +9,9 @@ class PagesController < ApplicationController
   end
 
   def send_email
-    @from = params[:from]
+    @from = params[:email]
     @subject = params[:subject]
-    BookwormMailer.form_email(@from, @subject, params[:body]).deliver
+    BookwormMailer.form_email(params[:email], params[:subject], params[:body]).deliver
   end
 
 end

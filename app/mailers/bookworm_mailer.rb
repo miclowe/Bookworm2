@@ -1,5 +1,5 @@
 class BookwormMailer < ActionMailer::Base
-  default to: ENV["GMAIL_USERNAME"]
+  default :to => 'mklowe2012@gmail.com'
 
   def form_email(from, subject, body)
     @body = body
