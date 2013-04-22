@@ -1,0 +1,24 @@
+<% title "Contact" %>
+<div class="row contact">
+  <div class="container center">
+
+    <h4>Questions? Comments? Suggestions?</h4>
+
+    <div class="contact_box">
+      <%= form_tag("/contact", method: "post") do %>
+        <div class="contact_field">
+          <%= text_field_tag :email, "", :placeholder => "Your email address", autofocus: true %>
+        </div>
+        <div class="contact_field">
+          <%= text_field_tag :subject, "", :placeholder => "Subject" %>
+        </div>
+        <div class="contact_field">
+          <%= text_area_tag :body, "", :placeholder => 'Enter message' %>
+        </div>
+        <div>
+          <%= submit_tag "Send",:name => nil, :class => "btn btn-small" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<% title "Contact" %>
+<div class="row contact">
+  <div class="container center">
+
+    <h4>Thanks for your feedback.</h4>
+    <div class="search container">
+      <h5>What was the last book you read?</h5>
+      <%= form_tag("/search", method: "get") do %>
+        <%= text_field_tag :query, "", :placeholder => "Search by title, author or ISBN", autofocus: true %><br />
+        <%= submit_tag "Search",:name => nil, :class => "search btn btn-small" %>
+      <% end %>
+    </div>
+  </div>
+</div>

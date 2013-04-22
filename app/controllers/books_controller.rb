@@ -2,6 +2,7 @@ require 'open-uri'
 
 class BooksController < ApplicationController
 
+  before_filter :store_location
   before_filter :authenticate_user!, :only => [:add_to_bookbag]
 
   def search
@@ -25,25 +26,6 @@ class BooksController < ApplicationController
 
       @books << book
     }
-
-    # *************************************************
-
-    # url = "http://www.goodreads.com/search?query=#{URI.escape@query}"
-    # d = Nokogiri::HTML(open(url))
-    
-    # raise d.inspect
-    # @books = []
-    
-    # book = {}
-    # book[:title] = d.css('.bookTitle').text.strip.gsub(/^$\n/, '').split(/\r?\n/)
-    # book[:link] = d.css('a.bookTitle').map {|link| link['href']}
-    # book[:author] = d.css('.authorName:nth-child(1) span').map { |name| name.text.gsub("</span>","") } # AuthorName
-    
-    # d.css('.leftContainer').each { |item|
-    #   @books << book
-    # }
-    # raise @books.inspect 
-    # *************************************************
 
   end
 
@@ -141,7 +123,6 @@ class BooksController < ApplicationController
       @notice = "#{params[:title]} has been added to your Bookbag. How about another one?"
     else
       @notice = "#{params[:title]} already added to your Bookbag. How about different book?"
-      # flash[:notice] => "Book already added to your Bookbag. How about different book?"
     end
     redirect_to(detail_path(:id => params[:id]),:notice => @notice)
   end
