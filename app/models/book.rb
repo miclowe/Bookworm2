@@ -3,5 +3,8 @@ class Book < ActiveRecord::Base
 
   has_many :bookbags
   has_many :users, :through => :bookbags
+
+  validates_uniqueness_of :gr_id
+  validates_presence_of :gr_id
   
 end

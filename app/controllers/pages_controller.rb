@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   def send_email
     @from = params[:from]
     @subject = params[:subject]
-    Contact.form_email(@from, @subject, params[:body]).deliver
+    BookwormMailer.form_email(@from, @subject, params[:body]).deliver
   end
 
 end
