@@ -101,7 +101,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
   height: 20px;
 }
 
-.navbar a {
+.nav li a {
   font-weight: normal;
 }
 
