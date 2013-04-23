@@ -52,11 +52,9 @@ class BooksController < ApplicationController
     else
       
       detail[:title] = d.at('meta[@property="og:title"]')[:content]
-      # book[:title] = d.css('.bookTitle').text.strip.gsub("\n", ' ').gsub('"', '\"').gsub(/(\s){2,}/m, '\1')
       detail[:author] = d.css('.authorName:nth-child(1) span').first.text
       detail[:isbn] = d.at('meta[@property="good_reads:isbn"]')[:content]
-      # book[:isbn] = d.css('#bookDataBox :nth-child(1) .infoBoxRowItem').text.strip.gsub('"', '\"').gsub(/(\s){2,}/m, '\1')
-      detail[:description] = d.css('#description').text.strip.gsub('"', '\"').gsub(/(\s){2,}/m, '\1').gsub(/[^0-9]less[^0-9]/,'')#.gsub(/.*?(?=...more)/im, "")#.gsub(/...more[^0-9]/,'')
+      detail[:description] = d.css('#description').text.strip.gsub('"', '\"').gsub(/(\s){2,}/m, '\1').gsub(/[^0-9]less[^0-9]/,'')
       detail[:cover_url] = d.css('#imagecol img')[0]['src']
       detail[:work_id] = d.at('meta[@property="og:url"]')[:content].split(/\W+/)[6]
       # raise detail[:description]
