@@ -41,4 +41,20 @@ describe Book do
     expect(@book.gr_id).to eq 33456
   end
 
+  it "has many users through a bookbag" do
+    book = Book.create!(:title => "You Suck",
+                        :gr_id => 123456)
+    user1 = User.create!(:email => "abcdefg@gmail.com",
+                          :password => "secret")
+    user2 = User.create!(:email => "zyxwvu@yahoo.com",
+                          :password => "secret2")
+    bookbag1 = Bookbag.create!(:user_id => user1.id, :book_id => book.id)
+    bookbag2 = Bookbag.create!(:user_id => user2.id, :book_id => book.id)
+
+    expect(book.users).to be_an Array
+    expect(book.users.size).to eq 2
+    expect(book.users).to include user1
+    expect(book.users).to include user2
+  end
+
 end
