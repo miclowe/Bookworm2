@@ -16,4 +16,11 @@ describe Book do
     expect(@bookbag.user_id).to eq 2
   end
 
+  # it "should be associated with a book_id" do
+  #   book = Book.create(:id => 1)
+  #   bookbag = Bookbag.create(:book_id => 1)
+  #   expect(book.bookbags).to be_an Array
+  #   expect(book.bookbags).to include bookbag
+  # end
+
 end
