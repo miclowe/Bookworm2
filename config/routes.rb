@@ -9,7 +9,7 @@ Bookworm2::Application.routes.draw do
   get '/detail/:id', :to => 'books#detail', :as => 'detail'
   post '/detail/:id', :to => 'books#add_to_bookbag'
   get '/bookbag', :to => 'bookbags#show'
-  delete '/bookbag', :to => 'bookbags#remove'
+  delete '/bookbag/:id', :to => 'bookbags#remove', :as => 'remove'
   get '/contact', :to => 'pages#contact'
   post '/contact', :to => 'pages#send_email'
 

@@ -2,7 +2,7 @@
 <div class="container home center">
   <h3>Looking for a good book?</h3>
   <%= form_tag("/search", method: "get") do %>
-    <%= text_field_tag :query, "", :placeholder => "Search by title, author or ISBN", autofocus: true %><br />
+    <%= text_field_tag :query, "", :placeholder => "Search by Title, Author or ISBN", autofocus: true %><br />
     <%= submit_tag "Search",:name => nil, :class => "search btn btn-small" %>
   <% end %>
   <div class="bgimg">

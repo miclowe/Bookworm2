@@ -5,7 +5,7 @@
 <ul class="nav">
 <li>
     <%= form_tag("/search", method: "get", :class => "navbar-form search") do %>
-      <%= text_field_tag :query, "", :placeholder => "Title, author or ISBN", autofocus: true, :class => "span2" %>
+      <%= text_field_tag :query, "", :placeholder => "Title, Author or ISBN", autofocus: true, :class => "span2" %>
       <%= submit_tag "Search",:name => nil, :class => "search btn btn-mini" %>
     <% end %>
   </li>
