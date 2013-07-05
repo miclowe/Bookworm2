@@ -2,23 +2,23 @@
 <%#= @books.inspect %>
 <div class="row results">
   <h4 class="center">You searched for '<%= @query %>'</h4>
-    <div class="span9">
-      <div class="container list">
-        <% @books.each do |item| %>
-        <div class="row">
-          <div class="span2 right img_box">
-            <% if item[:sm_image_url] == "http://www.goodreads.com/assets/nocover/60x80.png" %>
-              <%= image_tag 'no_cover_img.jpg' %>
-            <% else %>
-              <%= image_tag item[:sm_image_url] %>
-            <% end %>
-          </div>
-          <div class="span6 text_box">
-            <a href="/detail/<%= item[:gr_id]%>"><%= item[:title]%> (<%= item[:pub_year]%>)</a><br />
-            by: <%= item[:author]%>
-          </div>
+  <div class="span9">
+    <div class="container list">
+      <% @books.each do |item| %>
+      <div class="row">
+        <div class="span2 right img_box">
+          <% if item[:sm_image_url] == "http://www.goodreads.com/assets/nocover/60x80.png" %>
+            <%= image_tag 'no_cover_img.jpg' %>
+          <% else %>
+            <%= image_tag item[:sm_image_url] %>
+          <% end %>
         </div>
-        <% end %>
+        <div class="span6 text_box">
+          <a href="/detail/<%= item[:gr_id]%>"><%= item[:title]%> (<%= item[:pub_year]%>)</a><br />
+          by: <%= item[:author]%>
+        </div>
       </div>
+      <% end %>
     </div>
   </div>
+</div>

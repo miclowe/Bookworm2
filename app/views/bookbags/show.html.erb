@@ -2,30 +2,30 @@
 <%#= @books.inspect %>
 <div class="row bookbag">
   <h4 class="center"><%= current_user.first_name %>'s Bookbag</h4>
-    <div class="span9">
-      <div class="container list">
-        <% @booksinbag.each do |item| %>
-        <div class="row">
-          <div class="span2 center img_box">
-            <% if item[:cover_url].nil? %>
-              <%= image_tag 'no_cover_img.jpg' %>
-            <% else %>
-              <%= image_tag item[:cover_url] %>
-            <% end %>
+  <div class="span9">
+    <div class="container list">
+      <% @booksinbag.each do |item| %>
+      <div class="row">
+        <div class="span2 center img_box">
+          <% if item[:cover_url].nil? %>
+            <%= image_tag 'no_cover_img.jpg' %>
+          <% else %>
+            <%= image_tag item[:cover_url] %>
+          <% end %>
 
-            <%= form_tag(bookbag_path, method: "delete") do %>
-              <%= hidden_field_tag(:id, item[:id]) %>
-              <%= submit_tag "Remove", :name => nil, :class => "btn btn-small" %>
-            <% end %>
+          <%= form_tag(bookbag_path, method: "delete") do %>
+            <%= hidden_field_tag(:id, item[:id]) %>
+            <%= submit_tag "Remove", :name => nil, :class => "btn btn-small" %>
+          <% end %>
 
-          </div>
-          <div class="span6 text_box">
-            <a href="/detail/<%= item[:gr_id]%>"><%= item[:title]%></a><br />
-            by: <%= item[:author]%><br />
-            ISBN: <%= item[:isbn]%>
-          </div>
         </div>
-        <% end %>
+        <div class="span6 text_box">
+          <a href="/detail/<%= item[:gr_id]%>"><%= item[:title]%></a><br />
+          by: <%= item[:author]%><br />
+          ISBN: <%= item[:isbn]%>
+        </div>
       </div>
+      <% end %>
     </div>
   </div>
+</div>
