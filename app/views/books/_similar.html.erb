@@ -2,19 +2,39 @@
 
 <ul>
   <% @booksimilar.each do |item| %>
-    <% item[:title].count.times do |x| %>
+    <% item[:title] %>
     <li class="similar_book_box">
       <div class="img_box center">
-        <% if item[:cover_url][x] == "http://www.goodreads.com/assets/nocover/60x80.png" %>
+        <% if item[:cover_url] == "http://www.goodreads.com/assets/nocover/111x148.png" %>
           <%= image_tag 'no_cover_img.jpg' %>
         <% else %>
-          <%= image_tag item[:cover_url][x] %>
+          <%= image_tag item[:cover_url] %>
         <% end %>
       </div>
       <div class="text_box">
-      <a href="/detail/<%= item[:work_id][x] %>"><%= item[:title][x] %></a><br />by <%= item[:author][x+1] %>
+      <a href="/detail/<%= item[:work_id] %>"><%= item[:title] %></a><br />by <%= item[:author] %>
       </div>
     </li>
-    <% end %>
   <% end %>
 </ul>
+
+<!--
+<ul>
+  <%# @booksimilar.each do |item| %>
+    <%# item[:title].count.times do |x| %>
+    <li class="similar_book_box">
+      <div class="img_box center">
+        <%# if item[:cover_url][x] == "http://www.goodreads.com/assets/nocover/60x80.png" %>
+          <%#= image_tag 'no_cover_img.jpg' %>
+        <%# else %>
+          <%#= image_tag item[:cover_url][x] %>
+        <%# end %>
+      </div>
+      <div class="text_box">
+      <a href="/detail/<%#= item[:work_id][x] %>"><%#= item[:title][x] %></a><br />by <%#= item[:author][x+1] %>
+      </div>
+    </li>
+    <%# end %>
+  <%# end %>
+</ul>
+-->

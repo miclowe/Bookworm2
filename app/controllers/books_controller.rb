@@ -35,8 +35,10 @@ class BooksController < ApplicationController
     @bookdetail = []
     detail = {}
 
-    url = "http://www.goodreads.com/book/show/#{@id}"
-    d = Nokogiri::HTML(open(url))
+    # url = "http://www.goodreads.com/book/show/#{@id}"
+    url = "http://www.goodreads.com/book/show/#{@id}?format=xml&key=C9dGgAg4RNcn9xNhUVaMA"
+    d = Nokogiri::XML(open(url))
+    # raise d.inspect
 
     if !@book.nil?
 
@@ -51,32 +53,46 @@ class BooksController < ApplicationController
       # raise @bookdetail.inspect
     else
 
-      detail[:title] = d.at('meta[@property="og:title"]')[:content]
-      detail[:author] = d.css('.authorName:nth-child(1) span').first.text
-      detail[:isbn] = d.at('meta[@property="good_reads:isbn"]')[:content]
-      detail[:description] = d.css('#description').text.strip.gsub('"', '\"').gsub(/(\s){2,}/m, '\1').gsub(/[^0-9]less[^0-9]/,'')
-      detail[:cover_url] = d.css('#imagecol img')[0]['src']
-      detail[:work_id] = d.at('meta[@property="og:url"]')[:content].split(/\W+/)[6]
-      # raise detail[:description]
-      d.css('.leftContainer').each do |item|
-        @bookdetail << detail
-      end
+      detail[:title] = d.at_xpath('//book/title').content
+      detail[:author] = d.at_xpath('//book/authors/author/name').content
+      detail[:isbn] = d.at_xpath('//book/isbn').content
+      detail[:description] = d.at_xpath('//book/description').content.gsub(/<[^<>]*>/, "")
+      detail[:cover_url] = d.at_xpath('//book/image_url').content
+      detail[:work_id] = d.at_xpath('//book/work/id').content
+
+      # detail[:title] = d.at('meta[@property="og:title"]')[:content]
+      # detail[:author] = d.css('.authorName:nth-child(1) span').first.text
+      # detail[:isbn] = d.at('meta[@property="good_reads:isbn"]')[:content]
+      # detail[:description] = d.css('#description').text.strip.gsub('"', '\"').gsub(/(\s){2,}/m, '\1').gsub(/[^0-9]less[^0-9]/,'')
+      # detail[:cover_url] = d.css('#imagecol img')[0]['src']
+      # detail[:work_id] = d.at('meta[@property="og:url"]')[:content].split(/\W+/)[6]
+      # raise detail[:title]
+      # d.css('.leftContainer').each do |item|
+      @bookdetail << detail
+      # end
     end
-    # raise @bookdetails.inspect
+    # raise @bookdetail.inspect
 
     @booksimilar = []
 
-    similar = {}
-    similar[:title] = d.css('.bookBlurb .titleLink .title').map {|title| title.text}
-    similar[:author] = d.css('.authorName:nth-child(1) span').map {|author| author.text}
-    similar[:cover_url] = d.css('img[@origin=related_works]').map {|image| image['src']}
-    similar[:link] = d.css('.titleLink a.title').map {|link| link['href']}
-    similar[:work_id] = d.css('img[@origin=related_works]').map {|image| image['rel']}
-    d.css('.rightContainer').each do |item|
+    d.xpath('//book/similar_books/book').each do |node|
+
+      similar = {}
+      similar[:title] = node.at_xpath('./title').content
+      similar[:author] = node.at_xpath('./authors/author/name').content
+      similar[:cover_url] = node.at_xpath('./image_url').content
+      similar[:link] = node.at_xpath('./title').content
+      similar[:work_id] = node.at_xpath('./id').content
+      # similar[:title] = d.css('.bookBlurb .titleLink .title').map {|title| title.text}
+      # similar[:author] = d.css('.authorName:nth-child(1) span').map {|author| author.text}
+      # similar[:cover_url] = d.css('img[@origin=related_works]').map {|image| image['src']}
+      # similar[:link] = d.css('.titleLink a.title').map {|link| link['href']}
+      # similar[:work_id] = d.css('img[@origin=related_works]').map {|image| image['rel']}
+      # d.css('.rightContainer').each do |item|
       @booksimilar << similar
+      # end
     end
     # raise @booksimilar.inspect
-
   end
 
   def similar
@@ -120,7 +136,7 @@ class BooksController < ApplicationController
         })
       @notice = "#{params[:title]} has been added to your Bookbag. How about another one?"
     else
-      @notice = "#{params[:title]} already added to your Bookbag. How about different book?"
+      @notice = "#{params[:title]} has already been added to your Bookbag. How about a different book?"
     end
     redirect_to(detail_path(:id => params[:id]),:notice => @notice)
   end
