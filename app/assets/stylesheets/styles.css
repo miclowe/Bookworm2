@@ -54,10 +54,10 @@ input[type="password"] {
   font-size: 25px;
 }
 
-.home form {
-  background-img: url('bookworm.jpg');
+/*.home form {
+  background-image: url('bookworm.jpg');
   background-repeat: no-repeat;
-}
+}*/
 
 .home img {
   padding: 20px;
@@ -68,7 +68,7 @@ input[type="password"] {
   width: 300px;
 }
 
-#sign_up_form, #sign_in_form {
+#sign_up_form, #sign_in_form, #pw_reset_form {
   margin: auto;
   width: 400px;
 }
