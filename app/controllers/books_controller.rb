@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     @query = params[:query]
     # @books = BookSearch.new(@query).search
 
-    url = "http://www.goodreads.com/search.xml?key=#{ENV['GOODREADS_KEY']}=#{URI.escape@query}"
+    url = "http://www.goodreads.com/search.xml?key=#{ENV['GOODREADS_KEY']}&q=#{URI.escape@query}"
     d = Nokogiri::XML(open(url))
 
     @books = []
