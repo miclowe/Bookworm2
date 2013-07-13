@@ -8,7 +8,12 @@
     <p class="center">by <%= item[:author] %></p>
     <div>
       <div class="span3 img_box right">
-        <img src="<%= item[:cover_url] %>">
+        <% if item[:cover_url] == "http://www.goodreads.com/assets/nocover/111x148.png" %>
+          <%= image_tag 'no_cover_img.jpg' %>
+        <% else %>
+          <%= image_tag item[:cover_url] %>
+        <% end %>
+        <!-- <img src="<%#= item[:cover_url] %>"> -->
       </div>
 
       <div class="span6 text_box">
