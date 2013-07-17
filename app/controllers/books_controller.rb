@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'nokogiri'
 
 class BooksController < ApplicationController
 
@@ -9,8 +10,8 @@ class BooksController < ApplicationController
     @query = params[:query]
     # @books = BookSearch.new(@query).search
 
-    # url = "http://www.goodreads.com/search.xml?key=#{ENV['GOODREADS_KEY']}&q=#{URI.escape@query}"
-    url = "http://www.goodreads.com/search.xml?key=C9dGgAg4RNcn9xNhUVaMA&q=#{URI.escape@query}"
+    url = "http://www.goodreads.com/search.xml?key=#{ENV['GOODREADS_KEY']}&q=#{URI.escape@query}"
+    # url = "http://www.goodreads.com/search.xml?key=C9dGgAg4RNcn9xNhUVaMA&q=#{URI.escape@query}"
     d = Nokogiri::XML(open(url))
 
     @books = []
@@ -37,8 +38,8 @@ class BooksController < ApplicationController
     detail = {}
 
     # url = "http://www.goodreads.com/book/show/#{@id}"
-    # url = "http://www.goodreads.com/book/show/#{@id}?format=xml&key=#{ENV['GOODREADS_KEY']}"
-    url = "http://www.goodreads.com/book/show/#{@id}?format=xml&key=C9dGgAg4RNcn9xNhUVaMA&q"
+    url = "http://www.goodreads.com/book/show/#{@id}?format=xml&key=#{ENV['GOODREADS_KEY']}"
+    # url = "http://www.goodreads.com/book/show/#{@id}?format=xml&key=C9dGgAg4RNcn9xNhUVaMA&q"
     d = Nokogiri::XML(open(url))
     # raise d.inspect
 
