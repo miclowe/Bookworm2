@@ -8,10 +8,8 @@ class BooksController < ApplicationController
 
   def search
     @query = params[:query]
-    # @books = BookSearch.new(@query).search
 
     url = "http://www.goodreads.com/search.xml?key=#{ENV['GOODREADS_KEY']}&q=#{URI.escape@query}"
-    # url = "http://www.goodreads.com/search.xml?key=C9dGgAg4RNcn9xNhUVaMA&q=#{URI.escape@query}"
     d = Nokogiri::XML(open(url))
 
     @books = []
@@ -37,9 +35,7 @@ class BooksController < ApplicationController
     @bookdetail = []
     detail = {}
 
-    # url = "http://www.goodreads.com/book/show/#{@id}"
     url = "http://www.goodreads.com/book/show/#{@id}?format=xml&key=#{ENV['GOODREADS_KEY']}"
-    # url = "http://www.goodreads.com/book/show/#{@id}?format=xml&key=C9dGgAg4RNcn9xNhUVaMA&q"
     d = Nokogiri::XML(open(url))
     # raise d.inspect
 
@@ -63,16 +59,7 @@ class BooksController < ApplicationController
       detail[:cover_url] = d.at_xpath('//book/image_url').content
       detail[:work_id] = d.at_xpath('//book/work/id').content
 
-      # detail[:title] = d.at('meta[@property="og:title"]')[:content]
-      # detail[:author] = d.css('.authorName:nth-child(1) span').first.text
-      # detail[:isbn] = d.at('meta[@property="good_reads:isbn"]')[:content]
-      # detail[:description] = d.css('#description').text.strip.gsub('"', '\"').gsub(/(\s){2,}/m, '\1').gsub(/[^0-9]less[^0-9]/,'')
-      # detail[:cover_url] = d.css('#imagecol img')[0]['src']
-      # detail[:work_id] = d.at('meta[@property="og:url"]')[:content].split(/\W+/)[6]
-      # raise detail[:title]
-      # d.css('.leftContainer').each do |item|
       @bookdetail << detail
-      # end
     end
     # raise @bookdetail.inspect
 
@@ -86,35 +73,9 @@ class BooksController < ApplicationController
       similar[:cover_url] = node.at_xpath('./image_url').content
       similar[:link] = node.at_xpath('./title').content
       similar[:work_id] = node.at_xpath('./id').content
-      # similar[:title] = d.css('.bookBlurb .titleLink .title').map {|title| title.text}
-      # similar[:author] = d.css('.authorName:nth-child(1) span').map {|author| author.text}
-      # similar[:cover_url] = d.css('img[@origin=related_works]').map {|image| image['src']}
-      # similar[:link] = d.css('.titleLink a.title').map {|link| link['href']}
-      # similar[:work_id] = d.css('img[@origin=related_works]').map {|image| image['rel']}
-      # d.css('.rightContainer').each do |item|
       @booksimilar << similar
-      # end
     end
     # raise @booksimilar.inspect
-  end
-
-  def similar
-    @id = params[:id]
-
-    url = "http://www.goodreads.com/book/similar/#{@id}"
-    d = Nokogiri::HTML(open(url))
-    # raise d.inspect
-    @books = []
-
-    book = {}
-    book[:title] = d.css('.similarDescription')
-    # book[:author] = d.css('.authorName:nth-child(1) span').first.text
-
-    d.css('.leftContainer').each do |item|
-      @books << book
-    end
-
-    # raise @books.inspect
   end
 
   def add_to_bookbag
